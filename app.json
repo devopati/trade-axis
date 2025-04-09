@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "trade-axis-signals",
-    "slug": "trade-axis-signals",
+    "name": "Trade Axis",
+    "slug": "trade-axis",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
