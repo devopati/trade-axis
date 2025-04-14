@@ -11,7 +11,7 @@ import MenuPopup from "./components/MenuPopup";
 const Tab = createMaterialTopTabNavigator();
 
 const AdminHome = () => {
-  const [visible, setVisible] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
 
   return (
     <>
