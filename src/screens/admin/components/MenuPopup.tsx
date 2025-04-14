@@ -4,6 +4,9 @@ import { Modal, Portal } from "react-native-paper";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { darkRedColor } from "@/constants/colors";
 import Entypo from "@expo/vector-icons/Entypo";
+import { useNavigation } from "@react-navigation/native";
+import { NavigationPropType } from "@/types/types";
+import { adminScreenNames } from "@/constants/screen-names";
 
 const MenuPopup = ({
   visible,
@@ -12,7 +15,8 @@ const MenuPopup = ({
   visible: boolean;
   setVisible: (arg: boolean) => void;
 }) => {
-  const showModal = () => setVisible(true);
+  const navigation = useNavigation<NavigationPropType>();
+
   const hideModal = () => setVisible(false);
 
   return (
@@ -23,17 +27,41 @@ const MenuPopup = ({
         contentContainerStyle={styles.containerStyle}
       >
         <View style={{ gap: 40 }}>
-          <Pressable style={styles.btn}>
+          <Pressable
+            style={styles.btn}
+            onPress={() => {
+              {
+                hideModal();
+                navigation.navigate(adminScreenNames.ADD_SIGNAL);
+              }
+            }}
+          >
             <Ionicons name="add-circle-sharp" size={24} color={darkRedColor} />
             <Text style={styles.text}>Add New Signal</Text>
           </Pressable>
 
-          <Pressable style={styles.btn}>
+          <Pressable
+            style={styles.btn}
+            onPress={() => {
+              {
+                hideModal();
+                navigation.navigate(adminScreenNames.SEND_NOTIFICATION);
+              }
+            }}
+          >
             <Ionicons name="notifications" size={24} color={darkRedColor} />
             <Text style={styles.text}>Send Notification</Text>
           </Pressable>
 
-          <Pressable style={styles.btn}>
+          <Pressable
+            style={styles.btn}
+            onPress={() => {
+              {
+                hideModal();
+                navigation.navigate(adminScreenNames.GENERATE_REPORTS);
+              }
+            }}
+          >
             <Entypo name="bar-graph" size={24} color={darkRedColor} />
             <Text style={styles.text}>Generate Reports</Text>
           </Pressable>
