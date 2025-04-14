@@ -17,11 +17,25 @@ import { readableTimeFormat } from "@/utils/readable-time-format";
 interface SignalCardProps {
   signal: SignalType;
   onPress?: () => void;
+  selected?: boolean;
+  onLongPress?: () => void;
 }
 
-const SignalCard: React.FC<SignalCardProps> = ({ signal, onPress }) => {
+const SignalCard: React.FC<SignalCardProps> = ({
+  signal,
+  onPress,
+  selected,
+  onLongPress,
+}) => {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
+    <Pressable
+      style={[
+        styles.container,
+        selected && { backgroundColor: lightBlueColor },
+      ]}
+      onPress={onPress}
+      onLongPress={onLongPress}
+    >
       <View style={styles.left}>
         <View style={styles.top}>
           <MaterialIcons name="candlestick-chart" size={28} color="white" />
@@ -73,7 +87,7 @@ const SignalCard: React.FC<SignalCardProps> = ({ signal, onPress }) => {
 
       <View style={styles.left}>
         <Text style={[styles.text, { color: bgColor, marginBottom: 4.5 }]}>
-          {readableTimeFormat(signal?.postedAt)}
+          {readableTimeFormat(signal?.postedAt ?? "")}
         </Text>
         <Text style={styles.text}>SL: {signal?.stopLoss}</Text>
         <Text style={styles.text}>

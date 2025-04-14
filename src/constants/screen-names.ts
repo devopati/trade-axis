@@ -13,4 +13,8 @@ export const adminScreenNames = {
   PREMIUM_SIGNALS: "Premium Signals",
   REPORTS: "Reports",
   ADMIN: "Admin",
+  GENERATE_REPORTS: "Generate Reports",
+  ADD_SIGNAL: "Add New Signal",
+  SEND_NOTIFICATION: "Send Notification",
+  EDIT_SIGNAL: "Edit Signal",
 };
