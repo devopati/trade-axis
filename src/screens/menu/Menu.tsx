@@ -4,7 +4,7 @@ import { darkBlueColor, whiteColor } from "@/constants/colors";
 import { adminScreenNames } from "@/constants/screen-names";
 import { NavigationPropType } from "@/types/types";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,26 +12,31 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
+import LoginPopup from "./components/LoginPopup";
+import * as WebBrowser from "expo-web-browser";
 
 const menuItems = [
-  { id: "2", title: "Help & Support" },
+  // { id: "2", title: "Help & Support" },
   { id: "3", title: "Privacy And Policy" },
-  { id: "4", title: "About TradeAxis" },
+  // { id: "4", title: "About TradeAxis" },
 ];
 
 const Menu = () => {
   const navigation = useNavigation<NavigationPropType>();
 
-  const handlePress = (item: string) => {
-    console.log(`Selected: ${item}`);
-    navigation.navigate(adminScreenNames.ADMIN);
-    // Add navigation or functionality here
+  const [visible, setVisible] = useState<boolean>(false);
+
+  const _handlePressButtonAsync = async () => {
+    await WebBrowser.openBrowserAsync(
+      "https://www.freeprivacypolicy.com/live/655c9b37-59ca-4a66-abdd-9debedc4ab38"
+    );
   };
 
   const renderItem = ({ item }: { item: { id: string; title: string } }) => (
     <TouchableOpacity
       style={styles.menuItem}
-      onPress={() => handlePress(item.title)}
+      onLongPress={() => setVisible(true)}
+      onPress={_handlePressButtonAsync}
     >
       <Text style={styles.menuText}>{item.title}</Text>
     </TouchableOpacity>
@@ -39,6 +44,7 @@ const Menu = () => {
 
   return (
     <ViewWrapper>
+      <LoginPopup visible={visible} setVisible={setVisible} />
       <Text style={styles.title}></Text>
       <FlatList
         data={menuItems}
@@ -54,7 +60,7 @@ export default Menu;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   header: {
     fontSize: 24,
