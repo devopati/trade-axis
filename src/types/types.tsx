@@ -5,9 +5,9 @@ export type NavigationPropType = NavigationProp<
 >;
 
 export interface SignalType {
-  _id: string;
+  _id?: string;
   pairName: string;
-  postedAt: Date;
+  postedAt?: Date;
   buyingPoint1: string;
   sellingPoint1: string;
   buyingPoint2: string;
@@ -16,10 +16,11 @@ export interface SignalType {
   stopLoss: string;
   description: string;
   subscriptionPlan: string; // VIP | FREE
-  hitTakeProfit: Boolean;
-  isClosed: Boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  hitTakeProfit?: Boolean;
+  isClosed?: Boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  origin?: string; // origin of the signal
 }
 
 export interface ReportType {
@@ -28,4 +29,5 @@ export interface ReportType {
   totalHitStopLoss: string;
   totalTradesTaken: string;
   percentageWinRate: string;
+  origin: string;
 }

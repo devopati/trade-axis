@@ -10,7 +10,11 @@ import {
 } from "@/constants/colors";
 import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { SignalType } from "@/types/types";
+import { NavigationPropType, SignalType } from "@/types/types";
+import { useNavigation } from "@react-navigation/native";
+import { adminScreenNames } from "@/constants/screen-names";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import UseAppHook from "@/hooks/UseAppHook";
 
 const SignalPopup = ({
   visible,
@@ -21,7 +25,10 @@ const SignalPopup = ({
   setVisible: (arg: boolean) => void;
   signal?: SignalType | null;
 }) => {
+  const navigation = useNavigation<NavigationPropType>();
   const hideModal = () => setVisible(false);
+
+  const { editSignalAsync } = UseAppHook();
 
   return (
     <Portal>
@@ -31,27 +38,54 @@ const SignalPopup = ({
         contentContainerStyle={styles.modal}
       >
         <View style={styles.container}>
-          <Pressable style={styles.btn}>
-            <Text style={styles.text}>Select Signal</Text>
-            <AntDesign name="checkcircle" size={19.5} color="white" />
-          </Pressable>
-
-          <Pressable style={styles.btn}>
+          <Pressable
+            style={styles.btn}
+            onPress={() => {
+              const data = signal ?? ({} as SignalType);
+              data["hitTakeProfit"] = true;
+              hideModal();
+              editSignalAsync(data);
+            }}
+          >
             <Text style={styles.text}>Hit Take Profit</Text>
             <Feather name="check-circle" size={19.5} color={darkGreenColor} />
           </Pressable>
 
-          <Pressable style={styles.btn}>
+          <Pressable
+            style={styles.btn}
+            onPress={() => {
+              const data = signal ?? ({} as SignalType);
+              data["hitTakeProfit"] = false;
+              hideModal();
+              editSignalAsync(data);
+            }}
+          >
             <Text style={styles.text}>Hit Stop Loss</Text>
             <AntDesign name="closecircleo" size={19.5} color={redColor} />
           </Pressable>
 
-          <Pressable style={styles.btn}>
+          <Pressable
+            style={styles.btn}
+            onPress={() => {
+              const data = signal ?? ({} as SignalType);
+              data["isClosed"] = true;
+              hideModal();
+              editSignalAsync(data);
+            }}
+          >
             <Text style={styles.text}>Close Position</Text>
             <AntDesign name="minuscircle" size={19.5} color={darkRedColor} />
           </Pressable>
 
-          <Pressable style={styles.btn}>
+          <Pressable
+            style={styles.btn}
+            onPress={() => {
+              hideModal();
+              navigation.navigate(adminScreenNames.EDIT_SIGNAL, {
+                signal,
+              });
+            }}
+          >
             <Text style={styles.text}>Edit Signal</Text>
             <Feather name="edit" size={19.5} color={lightBlueColor} />
           </Pressable>
