@@ -7,6 +7,7 @@ import SignalCard from "@/components/cards/SignalCard";
 import SubscriptionCard from "@/components/cards/SubscriptionCard";
 import { SignalType } from "@/types/types";
 import useRevenueCatSDKHook from "@/hooks/UseRevenueCatSDKHook";
+import { blackColor } from "@/constants/colors";
 
 const Premium = () => {
   const {
@@ -63,6 +64,36 @@ const Premium = () => {
               onRefresh={() => getAllSignals()}
             />
           }
+          ListFooterComponent={
+            <View
+              style={{
+                paddingHorizontal: 20,
+                marginTop: 10,
+                backgroundColor: blackColor,
+                paddingVertical: 20,
+                borderRadius: 14,
+              }}
+            >
+              <Text
+                style={[styles.text1, { lineHeight: 25 }]}
+                allowFontScaling={false}
+              >
+                App subscriptions will renew automatically. You can turn this
+                off any time. {"\n"}
+                If you cancel your subscription, you can still use the
+                subscription until the current billing period ends. {"\n\n"}
+                If you have any questions or need help, please contact us at:{" "}
+              </Text>
+              <Text
+                selectable
+                dataDetectorType={"email"}
+                allowFontScaling={false}
+                style={[styles.text1, { fontWeight: "600", fontSize: 17 }]}
+              >
+                tradeaxishub@gmail.com
+              </Text>
+            </View>
+          }
         />
       )}
     </ViewWrapper>
@@ -77,5 +108,9 @@ const styles = StyleSheet.create({
     paddingTop: 3,
     paddingHorizontal: 3,
     gap: 3,
+  },
+  text1: {
+    fontSize: 16,
+    color: "white",
   },
 });

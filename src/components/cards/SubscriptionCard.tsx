@@ -17,7 +17,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
   return (
     <View style={styles.container}>
       <View style={{ gap: 7 }}>
-        <Text style={styles.title}>
+        <Text style={styles.title} allowFontScaling={false}>
           {plan.identifier === PlanConstants.MONTHLY
             ? "MONTHLY"
             : plan.identifier === PlanConstants.THREE_MONTHS
@@ -26,7 +26,9 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
             ? "SIX MONTHS"
             : "YEARLY"}
         </Text>
-        <Text style={styles.text}>{plan.product.priceString}</Text>
+        <Text style={styles.text} allowFontScaling={false}>
+          {plan.product.priceString}
+        </Text>
       </View>
 
       <View>
@@ -37,6 +39,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
           style={{ borderRadius: 6, paddingHorizontal: 24, paddingVertical: 4 }}
         >
           <Text
+            allowFontScaling={false}
             style={[styles.text, { color: darkBlueColor, fontWeight: "600" }]}
           >
             Subscribe
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: darkBlueColor,
     paddingVertical: 18,
-    paddingHorizontal: 24,
+    paddingHorizontal: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -61,11 +64,12 @@ const styles = StyleSheet.create({
     paddingLeft: 55,
   },
   title: {
-    fontSize: 21,
+    fontSize: 18,
     color: "#fff",
   },
   text: {
     fontSize: 16,
     color: "#fff",
+    fontWeight: "bold",
   },
 });
