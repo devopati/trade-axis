@@ -2,23 +2,38 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { darkBlueColor, yellowColor } from "@/constants/colors";
 import { Button } from "react-native-paper";
+import { PurchasesPackage } from "react-native-purchases";
+import { PlanConstants } from "@/constants/plan-contants";
 
 interface SubscriptionCardProps {
-  plan: any;
+  plan: PurchasesPackage;
+  onPurchasePlan: () => void;
 }
 
-const SubscriptionCard: React.FC<SubscriptionCardProps> = ({ plan }) => {
+const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
+  plan,
+  onPurchasePlan,
+}) => {
   return (
     <View style={styles.container}>
       <View style={{ gap: 7 }}>
-        <Text style={styles.title}>Monthly</Text>
-        <Text style={styles.text}>Ksh 6,000.00</Text>
+        <Text style={styles.title}>
+          {plan.identifier === PlanConstants.MONTHLY
+            ? "MONTHLY"
+            : plan.identifier === PlanConstants.THREE_MONTHS
+            ? "THREE MONTHS"
+            : plan.identifier === PlanConstants.SIX_MONTHS
+            ? "SIX MONTHS"
+            : "YEARLY"}
+        </Text>
+        <Text style={styles.text}>{plan.product.priceString}</Text>
       </View>
 
       <View>
         <Button
           mode="contained"
           buttonColor={yellowColor}
+          onPress={onPurchasePlan}
           style={{ borderRadius: 6, paddingHorizontal: 24, paddingVertical: 4 }}
         >
           <Text

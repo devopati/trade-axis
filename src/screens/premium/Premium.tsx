@@ -6,6 +6,7 @@ import { FlatList, RefreshControl } from "react-native-gesture-handler";
 import SignalCard from "@/components/cards/SignalCard";
 import SubscriptionCard from "@/components/cards/SubscriptionCard";
 import { SignalType } from "@/types/types";
+import useRevenueCatSDKHook from "@/hooks/UseRevenueCatSDKHook";
 
 const Premium = () => {
   const {
@@ -15,9 +16,13 @@ const Premium = () => {
     loading,
     availablePlans,
   } = useContext(AppContext);
+
+  const { purchasePlanAsync } = useRevenueCatSDKHook();
+
   useEffect(() => {
     activePlans.length !== 0 && getAllSignals("premium");
   }, []);
+
   return (
     <ViewWrapper>
       {activePlans.length !== 0 ? (
@@ -40,8 +45,13 @@ const Premium = () => {
         />
       ) : (
         <FlatList
-          data={Array.from({ length: 4 })}
-          renderItem={({ item }) => <SubscriptionCard plan={item} />}
+          data={availablePlans.reverse()}
+          renderItem={({ item }) => (
+            <SubscriptionCard
+              plan={item}
+              onPurchasePlan={() => purchasePlanAsync(item)}
+            />
+          )}
           keyExtractor={(item, index) => index.toString()}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}

@@ -17,7 +17,7 @@ const RevenueCatSdk = () => {
         await Purchases.configure({ apiKey: "apple_api_key" });
       } else if (Platform.OS === "android") {
         await Purchases.configure({
-          apiKey: "goog_lkd", //add a valid one
+          apiKey: "goog_mmkhqYSNSPweMQIWdNXmsIlEJWF",
         });
       }
 
