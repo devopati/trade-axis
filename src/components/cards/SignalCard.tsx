@@ -42,11 +42,11 @@ const SignalCard: React.FC<SignalCardProps> = ({
           <Text style={styles.title}>{signal?.pairName}</Text>
         </View>
         <Text style={styles.text}>
-          Entry 1:{" "}
+          Entry:{" "}
           {signal?.buyingPoint1 ? signal?.buyingPoint1 : signal?.sellingPoint1}
         </Text>
         <Text style={styles.text}>
-          Entry 2:{" "}
+          TO:{" "}
           {signal?.buyingPoint2 ? signal?.buyingPoint2 : signal?.sellingPoint2}
         </Text>
       </View>
