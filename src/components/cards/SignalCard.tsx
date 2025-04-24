@@ -41,11 +41,11 @@ const SignalCard: React.FC<SignalCardProps> = ({
           <MaterialIcons name="candlestick-chart" size={28} color="white" />
           <Text style={styles.title}>{signal?.pairName}</Text>
         </View>
-        <Text style={styles.text}>
+        <Text allowFontScaling={false} style={styles.text}>
           Entry:{" "}
           {signal?.buyingPoint1 ? signal?.buyingPoint1 : signal?.sellingPoint1}
         </Text>
-        <Text style={styles.text}>
+        <Text allowFontScaling={false} style={styles.text}>
           TO:{" "}
           {signal?.buyingPoint2 ? signal?.buyingPoint2 : signal?.sellingPoint2}
         </Text>
@@ -53,6 +53,7 @@ const SignalCard: React.FC<SignalCardProps> = ({
 
       <View style={styles.left}>
         <Text
+          allowFontScaling={false}
           style={[
             styles.title,
             { color: signal?.buyingPoint1 ? lightBlueColor : redColor },
@@ -62,6 +63,7 @@ const SignalCard: React.FC<SignalCardProps> = ({
         </Text>
         <Text style={styles.text}>TP: {signal?.takeProfit1}</Text>
         <Text
+          allowFontScaling={false}
           style={[
             styles.text,
             {
@@ -80,7 +82,7 @@ const SignalCard: React.FC<SignalCardProps> = ({
             : signal?.isClosed
             ? "closed"
             : signal.hitTakeProfit === false
-            ? "lost"
+            ? "stop loss"
             : "___"}
         </Text>
       </View>
