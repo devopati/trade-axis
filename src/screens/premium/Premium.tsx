@@ -24,6 +24,10 @@ const Premium = () => {
     activePlans.length !== 0 && getAllSignals("premium");
   }, []);
 
+  useEffect(() => {
+    activePlans.length !== 0 && getAllSignals("premium");
+  }, [activePlans]);
+
   return (
     <ViewWrapper>
       {activePlans.length !== 0 ? (

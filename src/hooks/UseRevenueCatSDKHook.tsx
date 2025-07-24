@@ -32,6 +32,7 @@ const useRevenueCatSDKHook = () => {
       await getCurrentCustomerActiveSubs();
       ToastAndroid.show("Purchase successful", ToastAndroid.SHORT);
       setSuccess(true);
+      getAvailableSubscriptionPlans();
     } catch (error) {
       console.log(error);
       Alert.alert("Request Failed", "Failed to purchase plan");

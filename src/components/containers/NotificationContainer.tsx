@@ -74,10 +74,10 @@ const NotificationContainer = () => {
 
   const { socket, activePlans } = useContext(AppContext);
 
-  socket?.emit("tradeaxis notification token", {
-    token: "token",
-    activePlans: activePlans.length === 0 ? "free" : "premium",
-  });
+  // socket?.emit("tradeaxis notification token", {
+  //   token: "token",
+  //   activePlans: activePlans.length === 0 ? "free" : "premium",
+  // });
 
   useEffect(() => {
     registerForPushNotificationsAsync()
@@ -85,7 +85,7 @@ const NotificationContainer = () => {
         setExpoPushToken(token ?? "");
         socket?.emit("tradeaxis notification token", {
           token: token,
-          activePlans: activePlans.length === 0 ? "free" : "premium",
+          activePlans: activePlans.length === 0 ? "free" : "premium", // user type, fix in future updates
         });
       })
       .catch((error: any) => setExpoPushToken(`${error}`));
