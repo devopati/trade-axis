@@ -7,12 +7,7 @@ import Reports from "@/screens/reports/Reports";
 import Menu from "@/screens/menu/Menu";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import {
-  blackColor,
-  darkGreenColor,
-  greenColor,
-  yellowColor,
-} from "@/constants/colors";
+import { blackColor, greenColor } from "@/constants/colors";
 import BottomTabsHeader from "@/components/headers/BottomTabsHeader";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -23,8 +18,7 @@ const Tabs = createBottomTabNavigator();
 
 const BottomTabs = () => {
   return (
-    <>
-      <SafeAreaView style={{ backgroundColor: blackColor }} />
+    <SafeAreaView style={{ backgroundColor: blackColor, flex: 1 }}>
       <Tabs.Navigator
         screenOptions={({ route }) => ({
           header: () => {
@@ -71,7 +65,7 @@ const BottomTabs = () => {
         <Tabs.Screen name={bottomTabScreenNames.REPORTS} component={Reports} />
         <Tabs.Screen name={bottomTabScreenNames.MENU} component={Menu} />
       </Tabs.Navigator>
-    </>
+    </SafeAreaView>
   );
 };
 
