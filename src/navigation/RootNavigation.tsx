@@ -4,8 +4,10 @@ import BottomTabs from "./BottomTabs";
 import {
   adminScreenNames,
   bottomTabScreenNames,
+  generalScreenNames,
 } from "@/constants/screen-names";
 import AdminNavigation from "./AdminNavigation";
+import Faqs from "@/screens/faqs/Faqs";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +27,7 @@ const RootNavigation = () => {
           name={adminScreenNames.ADMIN}
           component={AdminNavigation}
         />
+        <Stack.Screen name={generalScreenNames.FAQs} component={Faqs} />
       </Stack.Navigator>
     </NavigationContainer>
   );

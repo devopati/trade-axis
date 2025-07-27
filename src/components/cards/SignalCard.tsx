@@ -9,10 +9,10 @@ import {
   lightBlueColor,
   redColor,
 } from "@/constants/colors";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import BlinkingText from "../animated/BlinkingText";
 import { SignalType } from "@/types/types";
 import { readableTimeFormat } from "@/utils/readable-time-format";
+import { Image } from "react-native";
 
 interface SignalCardProps {
   signal: SignalType;
@@ -38,7 +38,11 @@ const SignalCard: React.FC<SignalCardProps> = ({
     >
       <View style={styles.left}>
         <View style={styles.top}>
-          <MaterialIcons name="candlestick-chart" size={28} color="white" />
+          {/* <MaterialIcons name="candlestick-chart" size={28} color="white" /> */}
+          <Image
+            source={require("../../../assets/images/logo.png")}
+            style={styles.logo}
+          />
           <Text style={styles.title}>{signal?.pairName}</Text>
         </View>
         <Text allowFontScaling={false} style={styles.text}>
@@ -76,13 +80,13 @@ const SignalCard: React.FC<SignalCardProps> = ({
             },
           ]}
         >
-          Outcome:{" "}
+          {/* Outcome:{" "} */}
           {signal?.hitTakeProfit === true
-            ? "won"
+            ? "Take Profit Hit"
             : signal?.isClosed
-            ? "closed"
+            ? "Closed"
             : signal.hitTakeProfit === false
-            ? "stop loss"
+            ? "Stop Loss Hit"
             : "___"}
         </Text>
       </View>
@@ -109,10 +113,11 @@ export default SignalCard;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: darkBlueColor,
+    backgroundColor: "#070816",
     padding: 14,
     flexDirection: "row",
     justifyContent: "space-between",
+    borderRadius: 14,
   },
   text: {
     color: "white",
@@ -126,13 +131,18 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 4.5,
     textTransform: "uppercase",
+    fontWeight: "500",
   },
   top: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 5,
+    gap: 7,
   },
   left: {
     gap: 3,
+  },
+  logo: {
+    width: 35,
+    height: 35,
   },
 });

@@ -6,7 +6,6 @@ import { blackColor } from "@/constants/colors";
 const BottomTabsHeader = ({ title }: { title: string }) => {
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{ backgroundColor: blackColor }} />
       <Text style={styles.title}>{title}</Text>
     </View>
   );
@@ -24,5 +23,6 @@ const styles = StyleSheet.create({
     padding: 10,
     fontWeight: "500",
     textTransform: "capitalize",
+    textAlign: "center",
   },
 });

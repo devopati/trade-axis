@@ -1,10 +1,10 @@
 export const yellowColor = "#FFDB0C";
-export const darkBlueColor = "#000333";
+export const darkBlueColor = "#070816";
 export const lightBlueColor = "#005EFF";
 export const whiteColor = "#FFFFFF";
 export const blackColor = "#000000";
 export const lightGrayColor = "#F7F7F7";
-export const bgColor = "#8C8D8F";
+export const bgColor = "#3F4043";
 export const redColor = "#BF3D48";
 export const darkRedColor = "#953741";
 export const greenColor = "#0DFF00"; //2A7904-->dark green

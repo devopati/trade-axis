@@ -1,7 +1,5 @@
-import ScrollWrapper from "@/components/wrapper/ScrollWrapper";
 import ViewWrapper from "@/components/wrapper/ViewWrapper";
 import { darkBlueColor, whiteColor } from "@/constants/colors";
-import { adminScreenNames } from "@/constants/screen-names";
 import { NavigationPropType } from "@/types/types";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
@@ -14,11 +12,12 @@ import {
 } from "react-native";
 import LoginPopup from "./components/LoginPopup";
 import * as WebBrowser from "expo-web-browser";
+import { generalScreenNames } from "@/constants/screen-names";
 
 const menuItems = [
-  // { id: "2", title: "Help & Support" },
+  { id: "2", title: "FAQs" },
   { id: "3", title: "Privacy And Policy" },
-  // { id: "4", title: "About TradeAxis" },
+  { id: "4", title: "Rate Us" },
 ];
 
 const Menu = () => {
@@ -32,11 +31,23 @@ const Menu = () => {
     );
   };
 
+  const handleRateUsPress = async () => {
+    await WebBrowser.openBrowserAsync(
+      "https://play.google.com/store/apps/details?id=com.d3vi.tradeaxis&pcampaignid=web_share"
+    );
+  };
+
   const renderItem = ({ item }: { item: { id: string; title: string } }) => (
     <TouchableOpacity
       style={styles.menuItem}
       onLongPress={() => setVisible(true)}
-      onPress={_handlePressButtonAsync}
+      onPress={() =>
+        item.id === "4"
+          ? handleRateUsPress()
+          : item.id === "2"
+          ? navigation.navigate(generalScreenNames.FAQs)
+          : _handlePressButtonAsync()
+      }
     >
       <Text style={styles.menuText}>{item.title}</Text>
     </TouchableOpacity>
@@ -72,7 +83,7 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: darkBlueColor,
     borderRadius: 8,
-    marginBottom: 10,
+    marginBottom: 7,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -86,9 +97,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 20,
+    // marginBottom: 20,
     textAlign: "center",
     color: whiteColor,
-    marginTop: 20,
+    // marginTop: 20,
   },
 });

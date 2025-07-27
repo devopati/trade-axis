@@ -2,7 +2,6 @@ export const bottomTabScreenNames = {
   HOME: "Free",
   PREMIUM: "Premium",
   REPORTS: "Reports",
-  FAQs: "FAQs",
   MENU: "Menu",
   BOTTOM: "Bottom",
 };
@@ -17,4 +16,8 @@ export const adminScreenNames = {
   ADD_SIGNAL: "Add New Signal",
   SEND_NOTIFICATION: "Send Notification",
   EDIT_SIGNAL: "Edit Signal",
+};
+
+export const generalScreenNames = {
+  FAQs: "FAQs",
 };
