@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useContext } from "react";
 import ViewWrapper from "@/components/wrapper/ViewWrapper";
 import { AppContext } from "@/context/AppContextHook";

@@ -51,7 +51,7 @@ const BottomTabs = () => {
           },
           tabBarStyle: {
             backgroundColor: "#000000",
-            height: 60,
+            // height: 60,
             borderTopWidth: 0,
           },
           tabBarLabelStyle: {
