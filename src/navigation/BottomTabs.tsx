@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import HomeScreen from "@/screens/home/HomeScreen";
 import { bottomTabScreenNames } from "@/constants/screen-names";
 import Premium from "@/screens/premium/Premium";
@@ -13,10 +13,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { AppContext } from "@/context/AppContextHook";
 
 const Tabs = createBottomTabNavigator();
 
 const BottomTabs = () => {
+  const { activePlans } = useContext(AppContext);
   return (
     <SafeAreaView style={{ backgroundColor: blackColor, flex: 1 }}>
       <Tabs.Navigator
@@ -60,7 +62,13 @@ const BottomTabs = () => {
           tabBarActiveTintColor: greenColor,
         })}
       >
-        <Tabs.Screen name={bottomTabScreenNames.HOME} component={HomeScreen} />
+        {activePlans.length === 0 && (
+          <Tabs.Screen
+            name={bottomTabScreenNames.HOME}
+            component={HomeScreen}
+          />
+        )}
+
         <Tabs.Screen name={bottomTabScreenNames.PREMIUM} component={Premium} />
         <Tabs.Screen name={bottomTabScreenNames.REPORTS} component={Reports} />
         <Tabs.Screen name={bottomTabScreenNames.MENU} component={Menu} />
